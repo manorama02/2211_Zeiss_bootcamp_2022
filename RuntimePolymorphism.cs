@@ -5,18 +5,21 @@ namespace ConsoleApp16
     {
         //Dependency
         //RevtronEngine _engine=new RevtronEngine(); //composition
+        
+        public void Ignite(Engine Engtype) {
+            Engtype.EngineName();
+        }
+        public void Halt() {
+           
+        }
+    }
+    class Engine{
         public virtual void EngineName()
         {
             Console.WriteLine("No engine set ");
         }
-        public void Ignite() {
-        //_engine.Start();
-        }
-        public void Halt() {
-            //_engine.Stop();
-        }
     }
-    class RevtronEngine:TataCar
+    class RevtronEngine:Engine
     {
         public override void EngineName()
         {
@@ -25,7 +28,7 @@ namespace ConsoleApp16
         //public void Start() { }
         //public void Stop() { }
     }
-    class VericoreEngine:TataCar
+    class VericoreEngine:Engine
     {
         public override void EngineName()
         {
@@ -33,7 +36,7 @@ namespace ConsoleApp16
         }
 
     }
-    class KrytoechEngine:TataCar
+    class KrytoechEngine:Engine
     {
         public override void EngineName()
         {
@@ -44,14 +47,17 @@ namespace ConsoleApp16
     {
         static void Main(string[] args)
         {
-            TataCar _nexon = new RevtronEngine();
-            _nexon.EngineName();
+            Tatacar _nexon = new TataCar();
+            Engine revtron=new RevtronEngine();
+            _nexon.ignite(revtron);
 
-            TataCar _harrier = new KrytoechEngine(); //Kryotech engine
-            _nexon.EngineName();
+            TataCar _harrier = new TataCar(); //Kryotech engine
+            Engine kryo=new KrytoechEngine();
+            _nexon.ignite(kryo);
 
-            TataCar _hexa = new VericoreEngine();//vericore engine
-            _nexon.EngineName();
+            TataCar _hexa = new TataCar();//vericore engine
+            Engine vericore=new VericoreEngine();
+            _nexon.ignite( vericore);
 
             FamilyOccassion _family = new FamilyOccassion();
             Parent _parentInstance = new Parent();
